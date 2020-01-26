@@ -9,6 +9,9 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
+
+import static java.util.stream.Collectors.toList;
 
 @Service
 public class ArticleService {
@@ -26,7 +29,10 @@ public class ArticleService {
     public List<ArticleDto> list() {
         final List<Article> articles = repository.all();
         //TODO
-        return new ArrayList<>();
+        return articles.stream()
+                .filter(Objects::nonNull)
+                .map(mapper::map)
+                .collect(toList());
     }
 
     public ArticleDto articleForId(Long id) {
