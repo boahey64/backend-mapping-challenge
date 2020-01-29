@@ -2,6 +2,8 @@ package com.mhp.coding.challenges.mapping.models.dto;
 
 import com.mhp.coding.challenges.mapping.models.db.ImageSize;
 
+import java.util.Objects;
+
 public class ImageDto {
 
     private Long id;
@@ -41,5 +43,20 @@ public class ImageDto {
                 ", url='" + url + '\'' +
                 ", imageSize=" + imageSize +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        ImageDto imageDto = (ImageDto) o;
+        return Objects.equals(id, imageDto.id) &&
+                Objects.equals(url, imageDto.url) &&
+                imageSize == imageDto.imageSize;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, url, imageSize);
     }
 }

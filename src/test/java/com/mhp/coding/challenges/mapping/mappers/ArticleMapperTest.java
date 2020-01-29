@@ -6,6 +6,7 @@ import com.mhp.coding.challenges.mapping.models.db.ImageSize;
 import com.mhp.coding.challenges.mapping.models.db.blocks.ArticleBlock;
 import com.mhp.coding.challenges.mapping.models.db.blocks.GalleryBlock;
 import com.mhp.coding.challenges.mapping.models.dto.ArticleDto;
+import com.mhp.coding.challenges.mapping.models.dto.blocks.GalleryBlockDto;
 import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -15,16 +16,16 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.*;
 
 public class ArticleMapperTest {
     private static final Logger log = LoggerFactory.getLogger(ArticleMapperTest.class);
-
-    ArticleMapper serviceUnderTest = new ArticleMapper();
+    ImageMapper imageMapper = new ImageMapper();
+    ArticleMapper serviceUnderTest = new ArticleMapper(imageMapper);
 
     @Test
-    public void map_article() {
-        Article article = anArticle();
+    public void map_article_with_one_gallery_block() {
+        Article article = anArticleWithOneGalleryBlock();
         log.info("ARTICLE: {}", article);
         ArticleDto actual = serviceUnderTest.map(article);
         log.info("ArticleDTO: {}", actual);
@@ -32,9 +33,16 @@ public class ArticleMapperTest {
         assertEquals(actual.getTitle(), article.getTitle());
         assertEquals(actual.getDescription(), article.getDescription());
         assertEquals(actual.getAuthor(), article.getAuthor());
+
+        assertNotNull(actual.getBlocks());
+        assertEquals(actual.getBlocks().size(), 1);
+        assert(actual.getBlocks().toArray()[0] instanceof GalleryBlockDto);
+        GalleryBlockDto galleryBlockDto = (GalleryBlockDto)actual.getBlocks().toArray()[0];
+        assertEquals(galleryBlockDto, aGalleryBlock().map(imageMapper));
+
     }
 
-    private Article anArticle() {
+    private Article anArticleWithOneGalleryBlock() {
         Article article = new Article();
         article.setTitle("Article Nr.: 1001");
         article.setDescription("Article Description 1001");
