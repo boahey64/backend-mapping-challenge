@@ -1,5 +1,6 @@
 package com.mhp.coding.challenges.mapping.models.db.blocks;
 
+import com.mhp.coding.challenges.mapping.mappers.ImageMapper;
 import com.mhp.coding.challenges.mapping.models.dto.blocks.ArticleBlockDto;
 
 public class VideoBlock extends ArticleBlock {
@@ -25,7 +26,7 @@ public class VideoBlock extends ArticleBlock {
     }
 
     @Override
-    public ArticleBlockDto map(ArticleBlock articleBlock) {
+    public ArticleBlockDto map(ImageMapper imageMapper) {
         return null;
     }
 }

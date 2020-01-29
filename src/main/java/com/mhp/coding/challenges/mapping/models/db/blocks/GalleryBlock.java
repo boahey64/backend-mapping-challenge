@@ -1,9 +1,15 @@
 package com.mhp.coding.challenges.mapping.models.db.blocks;
 
+import com.mhp.coding.challenges.mapping.mappers.ImageMapper;
 import com.mhp.coding.challenges.mapping.models.db.Image;
+import com.mhp.coding.challenges.mapping.models.dto.ImageDto;
 import com.mhp.coding.challenges.mapping.models.dto.blocks.ArticleBlockDto;
+import com.mhp.coding.challenges.mapping.models.dto.blocks.GalleryBlockDto;
 
 import java.util.List;
+import java.util.Objects;
+
+import static java.util.stream.Collectors.toList;
 
 public class GalleryBlock extends ArticleBlock {
 
@@ -18,8 +24,16 @@ public class GalleryBlock extends ArticleBlock {
     }
 
     @Override
-    public ArticleBlockDto map(ArticleBlock articleBlock) {
-        return null;
+    public ArticleBlockDto map(ImageMapper imageMapper) {
+        GalleryBlockDto galleryBlockDto = new GalleryBlockDto();
+        List<ImageDto> imageDtos = this.getImages().stream()
+                .filter(Objects::nonNull)
+                .map(image -> imageMapper.map(image))
+                .collect(toList());
+
+        galleryBlockDto.setImages(imageDtos);
+
+        return galleryBlockDto;
     }
 
     @Override

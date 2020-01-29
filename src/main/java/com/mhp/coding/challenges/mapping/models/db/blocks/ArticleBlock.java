@@ -1,5 +1,6 @@
 package com.mhp.coding.challenges.mapping.models.db.blocks;
 
+import com.mhp.coding.challenges.mapping.mappers.ImageMapper;
 import com.mhp.coding.challenges.mapping.models.dto.blocks.ArticleBlockDto;
 
 public abstract class ArticleBlock {
@@ -14,7 +15,7 @@ public abstract class ArticleBlock {
         this.sortIndex = sortIndex;
     }
 
-    public abstract ArticleBlockDto map(ArticleBlock articleBlock);
+    public abstract ArticleBlockDto map(ImageMapper imageMapper);
 
     @Override
     public String toString() {
