@@ -15,4 +15,11 @@ public class GalleryBlockDto extends ArticleBlockDto {
     public void setImages(List<ImageDto> images) {
         this.images = images;
     }
+
+    @Override
+    public String toString() {
+        return "GalleryBlockDto{" +
+                "images=" + images +
+                '}';
+    }
 }

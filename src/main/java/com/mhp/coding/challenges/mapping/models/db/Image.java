@@ -21,4 +21,12 @@ public class Image extends DBEntity {
     public void setImageSize(ImageSize imageSize) {
         this.imageSize = imageSize;
     }
+
+    @Override
+    public String toString() {
+        return "Image{" +
+                "url='" + url + '\'' +
+                ", imageSize=" + imageSize +
+                '}';
+    }
 }

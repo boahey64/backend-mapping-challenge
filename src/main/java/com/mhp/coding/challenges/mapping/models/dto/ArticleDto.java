@@ -56,4 +56,15 @@ public class ArticleDto {
     public void setId(Long id) {
         this.id = id;
     }
+
+    @Override
+    public String toString() {
+        return "ArticleDto{" +
+                "id=" + id +
+                ", title='" + title + '\'' +
+                ", description='" + description + '\'' +
+                ", author='" + author + '\'' +
+                ", blocks=" + blocks +
+                '}';
+    }
 }

@@ -33,4 +33,13 @@ public class ImageDto {
     public void setId(Long id) {
         this.id = id;
     }
+
+    @Override
+    public String toString() {
+        return "ImageDto{" +
+                "id=" + id +
+                ", url='" + url + '\'' +
+                ", imageSize=" + imageSize +
+                '}';
+    }
 }

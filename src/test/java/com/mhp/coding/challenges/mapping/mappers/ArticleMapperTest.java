@@ -7,6 +7,8 @@ import com.mhp.coding.challenges.mapping.models.db.blocks.ArticleBlock;
 import com.mhp.coding.challenges.mapping.models.db.blocks.GalleryBlock;
 import com.mhp.coding.challenges.mapping.models.dto.ArticleDto;
 import org.junit.Test;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -16,13 +18,16 @@ import java.util.Set;
 import static org.junit.Assert.assertEquals;
 
 public class ArticleMapperTest {
+    private static final Logger log = LoggerFactory.getLogger(ArticleMapperTest.class);
 
     ArticleMapper serviceUnderTest = new ArticleMapper();
 
     @Test
     public void map_article() {
         Article article = anArticle();
+        log.info("ARTICLE: {}", article);
         ArticleDto actual = serviceUnderTest.map(article);
+        log.info("ArticleDTO: {}", actual);
 
         assertEquals(actual.getTitle(), article.getTitle());
         assertEquals(actual.getDescription(), article.getDescription());

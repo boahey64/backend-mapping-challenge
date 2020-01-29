@@ -10,4 +10,11 @@ public class ArticleBlockDto {
     public void setSortIndex(int sortIndex) {
         this.sortIndex = sortIndex;
     }
+
+    @Override
+    public String toString() {
+        return "ArticleBlockDto{" +
+                "sortIndex=" + sortIndex +
+                '}';
+    }
 }
