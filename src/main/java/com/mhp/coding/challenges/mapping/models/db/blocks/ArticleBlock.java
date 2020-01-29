@@ -15,4 +15,11 @@ public abstract class ArticleBlock {
     }
 
     public abstract ArticleBlockDto map(ArticleBlock articleBlock);
+
+    @Override
+    public String toString() {
+        return "ArticleBlock{" +
+                "sortIndex=" + sortIndex +
+                '}';
+    }
 }

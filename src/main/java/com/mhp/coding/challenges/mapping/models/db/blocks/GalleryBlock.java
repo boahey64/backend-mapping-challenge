@@ -21,4 +21,11 @@ public class GalleryBlock extends ArticleBlock {
     public ArticleBlockDto map(ArticleBlock articleBlock) {
         return null;
     }
+
+    @Override
+    public String toString() {
+        return "GalleryBlock{" +
+                "images=" + images +
+                '}';
+    }
 }

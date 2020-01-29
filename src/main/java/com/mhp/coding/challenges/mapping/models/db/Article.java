@@ -45,4 +45,14 @@ public class Article extends DBEntity {
     public void setBlocks(Set<ArticleBlock> blocks) {
         this.blocks = blocks;
     }
+
+    @Override
+    public String toString() {
+        return "Article{" +
+                "title='" + title + '\'' +
+                ", description='" + description + '\'' +
+                ", author='" + author + '\'' +
+                ", blocks=" + blocks +
+                '}';
+    }
 }
