@@ -2,10 +2,13 @@ package com.mhp.coding.challenges.mapping.mappers;
 
 import com.mhp.coding.challenges.mapping.models.db.Article;
 import com.mhp.coding.challenges.mapping.models.dto.ArticleDto;
+import com.mhp.coding.challenges.mapping.models.dto.blocks.ArticleBlockDto;
 import org.springframework.stereotype.Component;
 
+import java.util.List;
 import java.util.Objects;
 
+import static java.util.Collections.emptyList;
 import static java.util.stream.Collectors.toList;
 
 @Component
@@ -18,13 +21,20 @@ public class ArticleMapper {
         articleDto.setAuthor(article.getAuthor());
         articleDto.setTitle(article.getTitle());
         articleDto.setDescription(article.getDescription());
-
-//        article.getBlocks().stream()
-//                .filter(Objects::nonNull)
-//                .map(mapper::map)
-//                .collect(toList());
+        articleDto.setBlocks(getArticleBlockDtos(article));
 
         return articleDto;
+    }
+
+    private List<ArticleBlockDto> getArticleBlockDtos(Article article) {
+        if(article.getBlocks() == null || article.getBlocks().isEmpty()) {
+            return emptyList();
+        }
+
+        return article.getBlocks().stream()
+                    .filter(Objects::nonNull)
+                    .map(articleBlock -> articleBlock.map(articleBlock))
+                    .collect(toList());
     }
 
     public Article map(ArticleDto articleDto) {
