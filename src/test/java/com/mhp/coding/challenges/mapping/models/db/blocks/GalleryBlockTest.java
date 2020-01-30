@@ -1,5 +1,6 @@
 package com.mhp.coding.challenges.mapping.models.db.blocks;
 
+import com.mhp.coding.challenges.mapping.mappers.BlockDtoMapperGeneric;
 import com.mhp.coding.challenges.mapping.mappers.ImageMapper;
 import com.mhp.coding.challenges.mapping.models.db.Image;
 import com.mhp.coding.challenges.mapping.models.db.ImageSize;
@@ -21,8 +22,8 @@ public class GalleryBlockTest {
     public void map_gallery_block_to_gallery_block_dto() {
         GalleryBlockDto expected = anExpectedGalleryBlockDto();
 
-        // TODO remove casting
-        GalleryBlockDto actual = (GalleryBlockDto)objectUnderTest.map(imageMapper);
+        GalleryBlockDto actual = new BlockDtoMapperGeneric<GalleryBlockDto>(GalleryBlockDto.class).getType(
+                objectUnderTest.map(imageMapper));
 
         assertEquals(expected.getImages(), actual.getImages());
     }
