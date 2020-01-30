@@ -6,6 +6,10 @@ public class ImageBlockDto extends ArticleBlockDto {
 
     private ImageDto image;
 
+    public ImageBlockDto(int sortIndex) {
+        super.setSortIndex(sortIndex);
+    }
+
     public ImageDto getImage() {
         return image;
     }
