@@ -9,6 +9,10 @@ public class GalleryBlockDto extends ArticleBlockDto {
 
     private List<ImageDto> images;
 
+    public GalleryBlockDto(int sortIndex) {
+        super.setSortIndex(sortIndex);
+    }
+
     public List<ImageDto> getImages() {
         return images;
     }
