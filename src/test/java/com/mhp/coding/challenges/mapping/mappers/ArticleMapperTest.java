@@ -37,8 +37,18 @@ public class ArticleMapperTest {
         assertNotNull(actual.getBlocks());
         assertEquals(actual.getBlocks().size(), 1);
         assert(actual.getBlocks().toArray()[0] instanceof GalleryBlockDto);
+
         GalleryBlockDto galleryBlockDto = (GalleryBlockDto)actual.getBlocks().toArray()[0];
-        assertEquals(galleryBlockDto, aGalleryBlock().map(imageMapper));
+        assertEquals(galleryBlockDto.getSortIndex(), aGalleryBlock().getSortIndex());
+        assertEquals(galleryBlockDto.getImages().get(0).getId(), aGalleryBlock().getImages().get(0).getId());
+        assertEquals(
+                galleryBlockDto.getImages().get(0).getImageSize(),
+                aGalleryBlock().getImages().get(0).getImageSize()
+        );
+        assertEquals(
+                galleryBlockDto.getImages().get(0).getUrl(),
+                aGalleryBlock().getImages().get(0).getUrl()
+        );
 
     }
 
@@ -60,6 +70,7 @@ public class ArticleMapperTest {
         List<Image> images = createImages();
         GalleryBlock galleryBlock = new GalleryBlock();
         galleryBlock.setImages(images);
+        galleryBlock.setSortIndex(3);
 
         return galleryBlock;
     }
