@@ -1,8 +1,12 @@
 package com.mhp.coding.challenges.mapping.models.dto.blocks;
 
-public class TextBlock extends ArticleBlockDto {
+public class TextBlockDto extends ArticleBlockDto {
 
     private String text;
+
+    public TextBlockDto(int sortIndex) {
+        super.setSortIndex(sortIndex);
+    }
 
     public String getText() {
         return text;
