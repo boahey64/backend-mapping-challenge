@@ -14,19 +14,24 @@ import java.util.List;
 import static org.junit.Assert.assertEquals;
 
 public class GalleryBlockTest {
-    GalleryBlock objectUnderTest = aGalleryBlock(4);
 
     ImageMapper imageMapper = new ImageMapper();
 
     @Test
     public void map_gallery_block_to_gallery_block_dto() {
+        GalleryBlock objectUnderTest = aGalleryBlock(4);
+
         GalleryBlockDto expected = anExpectedGalleryBlockDto(4);
 
-        GalleryBlockDto actual = new BlockDtoMapperGeneric<>(GalleryBlockDto.class).getType(
-                objectUnderTest.map(imageMapper));
+        GalleryBlockDto actual = callMapAndSetType(objectUnderTest);
 
         assertEquals(expected.getSortIndex(), actual.getSortIndex());
         assertEquals(expected.getImages(), actual.getImages());
+    }
+
+    private GalleryBlockDto callMapAndSetType(GalleryBlock galleryBlock) {
+        return new BlockDtoMapperGeneric<>(GalleryBlockDto.class).getType(
+                galleryBlock.map(imageMapper));
     }
 
     private GalleryBlockDto anExpectedGalleryBlockDto(int sortIndex) {
