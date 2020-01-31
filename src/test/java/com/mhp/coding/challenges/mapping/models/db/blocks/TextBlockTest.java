@@ -14,11 +14,15 @@ public class TextBlockTest {
     public void map_text_block_to_text_block_dto() {
         TextBlockDto expected = aTextBlockDto(5);
 
-        TextBlockDto actual = new BlockDtoMapperGeneric<>(TextBlockDto.class).getType(
-                objectUnderTest.map(null));
+        TextBlockDto actual = callMapAndSetType();
 
         assertEquals(expected.getSortIndex(), actual.getSortIndex());
         assertEquals(expected.getText(), actual.getText());
+    }
+
+    private TextBlockDto callMapAndSetType() {
+        return new BlockDtoMapperGeneric<>(TextBlockDto.class).getType(
+                objectUnderTest.map(null));
     }
 
     private TextBlockDto aTextBlockDto(int sortIndex) {
