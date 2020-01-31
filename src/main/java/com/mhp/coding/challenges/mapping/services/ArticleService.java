@@ -28,7 +28,7 @@ public class ArticleService {
 
     public List<ArticleDto> list() {
         final List<Article> articles = repository.all();
-        //TODO
+
         return articles.stream()
                 .filter(Objects::nonNull)
                 .map(mapper::map)
