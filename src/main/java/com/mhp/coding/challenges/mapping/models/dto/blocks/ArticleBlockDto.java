@@ -1,6 +1,6 @@
 package com.mhp.coding.challenges.mapping.models.dto.blocks;
 
-public class ArticleBlockDto {
+public class ArticleBlockDto implements Comparable<ArticleBlockDto> {
     private int sortIndex;
 
     public int getSortIndex() {
@@ -16,5 +16,10 @@ public class ArticleBlockDto {
         return "ArticleBlockDto{" +
                 "sortIndex=" + sortIndex +
                 '}';
+    }
+
+    @Override
+    public int compareTo(ArticleBlockDto articleBlockDto) {
+        return (this.sortIndex - articleBlockDto.sortIndex);
     }
 }

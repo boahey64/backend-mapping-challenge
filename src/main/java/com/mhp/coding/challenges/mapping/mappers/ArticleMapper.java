@@ -39,10 +39,13 @@ public class ArticleMapper {
             return emptyList();
         }
 
-        return article.getBlocks().stream()
+        List<ArticleBlockDto> articleDtos = article.getBlocks().stream()
                     .filter(Objects::nonNull)
                     .map(articleBlock -> articleBlock.map(imageMapper))
+                    .sorted()
                     .collect(toList());
+
+        return articleDtos;
     }
 
     public Article map(ArticleDto articleDto) {
