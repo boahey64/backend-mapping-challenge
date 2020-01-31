@@ -1,5 +1,6 @@
 package com.mhp.coding.challenges.mapping.repositories;
 
+import com.mhp.coding.challenges.mapping.exceptions.ArticleNotAvailableException;
 import com.mhp.coding.challenges.mapping.models.db.Article;
 import org.junit.Ignore;
 import org.junit.Test;
@@ -20,15 +21,18 @@ public class ArticleRepositoryTest {
 
     }
 
-    @Ignore
+
     @Test
     public void find_by_id_for_not_existing_id() {
-        Article article = serviceUnderTest.findBy(1002L);
+        Throwable e = null;
 
-        assertEquals("Max Mustermann", article.getAuthor());
-        assertEquals("Article Description 1001", article.getDescription());
-        assertEquals("Article Nr.: 1001", article.getTitle());
-        assertEquals("Hans Müller", article.getLastModifiedBy());
+        try {
+            serviceUnderTest.findBy(1002L);
+        } catch (Throwable ex) {
+            e = ex;
+        }
+
+        assertTrue(e instanceof ArticleNotAvailableException);
 
     }
 

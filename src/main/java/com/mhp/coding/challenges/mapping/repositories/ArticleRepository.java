@@ -1,5 +1,6 @@
 package com.mhp.coding.challenges.mapping.repositories;
 
+import com.mhp.coding.challenges.mapping.exceptions.ArticleNotAvailableException;
 import com.mhp.coding.challenges.mapping.models.db.Article;
 import com.mhp.coding.challenges.mapping.models.db.Image;
 import com.mhp.coding.challenges.mapping.models.db.ImageSize;
@@ -28,6 +29,9 @@ public class ArticleRepository {
 
     public Article findBy(Long id){
         Article article = articleMap.get(id);
+        if(article == null) {
+            throw new ArticleNotAvailableException("There is no article for id: " + id);
+        }
 
         return articleMap.get(id);
     }
