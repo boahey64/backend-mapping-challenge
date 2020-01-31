@@ -26,6 +26,11 @@ public class GalleryBlock extends ArticleBlock {
     @Override
     public ArticleBlockDto map(ImageMapper imageMapper) {
         GalleryBlockDto galleryBlockDto = new GalleryBlockDto(this.getSortIndex());
+
+        if(this.getImages() == null) {
+            return galleryBlockDto;
+        }
+
         List<ImageDto> imageDtos = this.getImages().stream()
                 .filter(Objects::nonNull)
                 .map(image -> imageMapper.map(image))

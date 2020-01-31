@@ -6,19 +6,22 @@ import com.mhp.coding.challenges.mapping.models.db.Image;
 import com.mhp.coding.challenges.mapping.models.db.ImageSize;
 import com.mhp.coding.challenges.mapping.models.dto.ImageDto;
 import com.mhp.coding.challenges.mapping.models.dto.blocks.GalleryBlockDto;
+import org.assertj.core.util.Lists;
 import org.junit.Test;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.junit.Assert.assertEquals;
+import static java.util.Collections.emptyList;
+import static org.junit.Assert.*;
+import static org.mockito.ArgumentMatchers.isNull;
 
 public class GalleryBlockTest {
 
     ImageMapper imageMapper = new ImageMapper();
 
     @Test
-    public void map_gallery_block_to_gallery_block_dto() {
+    public void map_gallery_block_with_one_not_empty_image_in_image_list_to_gallery_block_dto() {
         GalleryBlock objectUnderTest = aGalleryBlock(4);
 
         GalleryBlockDto expected = anExpectedGalleryBlockDto(4);
@@ -27,6 +30,32 @@ public class GalleryBlockTest {
 
         assertEquals(expected.getSortIndex(), actual.getSortIndex());
         assertEquals(expected.getImages(), actual.getImages());
+    }
+
+    @Test
+    public void map_gallery_block_with_empty_image_list_to_gallery_block_dto() {
+        GalleryBlock objectUnderTest = aGalleryBlockWithEmptyImageList(4);
+
+        GalleryBlockDto expected = anExpectedGalleryBlockDtoWithoutImageList(4);
+
+        GalleryBlockDto actual = callMapAndSetType(objectUnderTest);
+
+        assertEquals(expected.getSortIndex(), actual.getSortIndex());
+        assertEquals(expected.getImages(), actual.getImages());
+        assertNull(actual.getImages());
+    }
+
+    @Test
+    public void map_gallery_block_with_empty_image_items_to_gallery_block_dto() {
+        GalleryBlock objectUnderTest = aGalleryBlockWithEmptyImageItems(4);
+
+        GalleryBlockDto expected = anExpectedGalleryBlockDtoWithEmptyImageItems(4);
+
+        GalleryBlockDto actual = callMapAndSetType(objectUnderTest);
+
+        assertEquals(expected.getSortIndex(), actual.getSortIndex());
+        assertEquals(expected.getImages(), actual.getImages());
+        assertEquals(emptyList(), actual.getImages());
     }
 
     private GalleryBlockDto callMapAndSetType(GalleryBlock galleryBlock) {
@@ -38,6 +67,18 @@ public class GalleryBlockTest {
         GalleryBlockDto galleryBlockDto = new GalleryBlockDto(sortIndex);
         List<ImageDto> imageDtos = anExpectedImageDtoList();
         galleryBlockDto.setImages(imageDtos);
+        return galleryBlockDto;
+    }
+
+    private GalleryBlockDto anExpectedGalleryBlockDtoWithEmptyImageItems(int sortIndex) {
+        GalleryBlockDto galleryBlockDto = new GalleryBlockDto(sortIndex);
+        List<ImageDto> imageDtos = emptyList();
+        galleryBlockDto.setImages(imageDtos);
+        return galleryBlockDto;
+    }
+
+    private GalleryBlockDto anExpectedGalleryBlockDtoWithoutImageList(int sortIndex) {
+        GalleryBlockDto galleryBlockDto = new GalleryBlockDto(sortIndex);
         return galleryBlockDto;
     }
 
@@ -57,6 +98,20 @@ public class GalleryBlockTest {
         galleryBlock.setSortIndex(sortIndex);
         List<Image> images = anImageList();
         galleryBlock.setImages(images);
+        return galleryBlock;
+    }
+
+    GalleryBlock aGalleryBlockWithEmptyImageItems(int sortIndex) {
+        GalleryBlock galleryBlock = new GalleryBlock();
+        galleryBlock.setSortIndex(sortIndex);
+        List<Image> images = Lists.newArrayList(null, null);
+        galleryBlock.setImages(images);
+        return galleryBlock;
+    }
+
+    GalleryBlock aGalleryBlockWithEmptyImageList(int sortIndex) {
+        GalleryBlock galleryBlock = new GalleryBlock();
+        galleryBlock.setSortIndex(sortIndex);
         return galleryBlock;
     }
 
