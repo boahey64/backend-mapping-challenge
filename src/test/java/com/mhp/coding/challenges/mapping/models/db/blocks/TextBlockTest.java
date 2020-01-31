@@ -10,15 +10,12 @@ import static org.junit.Assert.assertEquals;
 public class TextBlockTest {
     private TextBlock objectUnderTest = aTextBlock(5);
 
-
-    ImageMapper imageMapper = new ImageMapper();
-
     @Test
     public void map_text_block_to_text_block_dto() {
         TextBlockDto expected = aTextBlockDto(5);
 
         TextBlockDto actual = new BlockDtoMapperGeneric<>(TextBlockDto.class).getType(
-                objectUnderTest.map(imageMapper));
+                objectUnderTest.map(null));
 
         assertEquals(expected.getSortIndex(), actual.getSortIndex());
         assertEquals(expected.getText(), actual.getText());
