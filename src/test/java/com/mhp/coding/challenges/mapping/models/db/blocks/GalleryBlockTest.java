@@ -13,8 +13,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static java.util.Collections.emptyList;
-import static org.junit.Assert.*;
-import static org.mockito.ArgumentMatchers.isNull;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNull;
 
 public class GalleryBlockTest {
 
