@@ -3,6 +3,9 @@ package com.mhp.coding.challenges.mapping.models.dto.blocks;
 import com.mhp.coding.challenges.mapping.models.db.blocks.VideoBlockType;
 
 public class VideoBlockDto extends ArticleBlockDto {
+    public VideoBlockDto(int sortIndex) {
+        super.setSortIndex(sortIndex);
+    }
 
     private String url;
 
