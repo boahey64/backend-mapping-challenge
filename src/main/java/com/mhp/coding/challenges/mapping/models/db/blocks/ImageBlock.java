@@ -6,6 +6,8 @@ import com.mhp.coding.challenges.mapping.models.dto.ImageDto;
 import com.mhp.coding.challenges.mapping.models.dto.blocks.ArticleBlockDto;
 import com.mhp.coding.challenges.mapping.models.dto.blocks.ImageBlockDto;
 
+import java.util.Optional;
+
 public class ImageBlock extends ArticleBlock {
 
     private Image image;
@@ -22,13 +24,25 @@ public class ImageBlock extends ArticleBlock {
     public ArticleBlockDto map(ImageMapper imageMapper) {
         ImageBlockDto imageBlockDto = new ImageBlockDto(this.getSortIndex());
 
-        Image image = this.getImage();
+
+        Optional<ImageDto> imageDto = getImageDto();
+        if(imageDto.isPresent()) {
+            imageBlockDto.setImage(imageDto.get());
+        }
+
+        return imageBlockDto;
+    }
+
+    private Optional<ImageDto> getImageDto() {
         ImageDto imageDto = new ImageDto();
+        Image image = this.getImage();
+        if(image == null) {
+            return Optional.empty();
+        }
         imageDto.setId(image.getId());
         imageDto.setImageSize(image.getImageSize());
         imageDto.setUrl(image.getUrl());
 
-        imageBlockDto.setImage(imageDto);
-        return imageBlockDto;
+        return Optional.of(imageDto);
     }
 }

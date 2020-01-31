@@ -9,18 +9,32 @@ import org.junit.Test;
 import static org.junit.Assert.assertEquals;
 
 public class ImageBlockTest {
-    ImageBlock objectUnderTest = anImageBlock();
 
     @Test
-    public void map_image_block_to_image_block_dto() {
+    public void map_image_block_with_existing_image_to_image_block_dto() {
+        ImageBlock objectUnderTest = anImageBlock();
         ImageBlockDto expected = anImageBlockDto(2);
 
-        ImageBlockDto actual = new BlockDtoMapperGeneric<>(ImageBlockDto.class).getType(
-                objectUnderTest.map(null));
+        ImageBlockDto actual = callMapAndSetType(objectUnderTest);
 
         assertEquals(expected.getSortIndex(), actual.getSortIndex());
         assertEquals(expected.getImage(), actual.getImage());
 
+    }
+
+    @Test
+    public void map_image_block_without_existing_image_to_image_block_dto() {
+        ImageBlock objectUnderTest = anImageWithEmptyImageField();
+        ImageBlockDto expected = anImageBlockDto(2);
+
+        ImageBlockDto actual = callMapAndSetType(objectUnderTest);
+
+        assertEquals(expected.getSortIndex(), actual.getSortIndex());
+    }
+
+    private ImageBlockDto callMapAndSetType(ImageBlock imageBlock) {
+        return new BlockDtoMapperGeneric<>(ImageBlockDto.class).getType(
+                imageBlock.map(null));
     }
 
     private ImageBlock anImageBlock() {
@@ -29,6 +43,12 @@ public class ImageBlockTest {
         Image image = new Image();
         image.setId(3L);
         imageBlock.setImage(image);
+        return imageBlock;
+    }
+
+    private ImageBlock anImageWithEmptyImageField() {
+        ImageBlock imageBlock = new ImageBlock();
+        imageBlock.setSortIndex(2);
         return imageBlock;
     }
 
