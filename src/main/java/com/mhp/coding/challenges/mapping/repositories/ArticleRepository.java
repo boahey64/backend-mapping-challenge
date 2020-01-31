@@ -7,22 +7,29 @@ import com.mhp.coding.challenges.mapping.models.db.blocks.*;
 import org.springframework.stereotype.Component;
 
 import java.util.*;
+import java.util.stream.Collectors;
 
 @Component
 public class ArticleRepository {
+    private Map<Long, Article> articleMap = new HashMap<>();
+
+    public ArticleRepository() {
+        articleMap.put(1001L, createDummyArticle(1001L));
+        articleMap.put(2002L, createDummyArticle(2002L));
+        articleMap.put(3003L, createDummyArticle(3003L));
+        articleMap.put(4004L, createDummyArticle(4004L));
+        articleMap.put(5005L, createDummyArticle(5005L));
+
+    }
 
     public List<Article> all(){
-        final List<Article> result = new ArrayList<>();
-        result.add(createDummyArticle(1001L));
-        result.add(createDummyArticle(2002L));
-        result.add(createDummyArticle(3003L));
-        result.add(createDummyArticle(4004L));
-        result.add(createDummyArticle(5005L));
-        return result;
+        return articleMap.values().stream().collect(Collectors.toList());
     }
 
     public Article findBy(Long id){
-        return createDummyArticle(id);
+        Article article = articleMap.get(id);
+
+        return articleMap.get(id);
     }
 
     public void create(Article article){
