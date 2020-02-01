@@ -3,7 +3,6 @@ package com.mhp.coding.challenges.mapping.mappers;
 import com.mhp.coding.challenges.mapping.models.db.Article;
 import com.mhp.coding.challenges.mapping.models.dto.ArticleDto;
 import com.mhp.coding.challenges.mapping.models.dto.blocks.ArticleBlockDto;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
@@ -14,13 +13,6 @@ import static java.util.stream.Collectors.toList;
 
 @Component
 public class ArticleMapper {
-
-    private ImageMapper imageMapper;
-
-    @Autowired
-    public ArticleMapper(ImageMapper imageMapper) {
-        this.imageMapper = imageMapper;
-    }
 
     public ArticleDto map(Article article){
         //TODO
@@ -41,7 +33,7 @@ public class ArticleMapper {
 
         List<ArticleBlockDto> articleDtos = article.getBlocks().stream()
                     .filter(Objects::nonNull)
-                    .map(articleBlock -> articleBlock.map(imageMapper))
+                    .map(articleBlock -> articleBlock.map())
                     .sorted()
                     .collect(toList());
 

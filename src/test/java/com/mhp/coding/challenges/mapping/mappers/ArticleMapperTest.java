@@ -6,7 +6,6 @@ import com.mhp.coding.challenges.mapping.models.db.ImageSize;
 import com.mhp.coding.challenges.mapping.models.db.blocks.ArticleBlock;
 import com.mhp.coding.challenges.mapping.models.db.blocks.GalleryBlock;
 import com.mhp.coding.challenges.mapping.models.dto.ArticleDto;
-import com.mhp.coding.challenges.mapping.models.dto.blocks.ArticleBlockDto;
 import com.mhp.coding.challenges.mapping.models.dto.blocks.GalleryBlockDto;
 import org.junit.Test;
 import org.slf4j.Logger;
@@ -17,16 +16,13 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
-import java.util.function.BiPredicate;
-import java.util.stream.IntStream;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 
 public class ArticleMapperTest {
     private static final Logger log = LoggerFactory.getLogger(ArticleMapperTest.class);
-    ImageMapper imageMapper = new ImageMapper();
-    ArticleMapper serviceUnderTest = new ArticleMapper(imageMapper);
+    ArticleMapper serviceUnderTest = new ArticleMapper();
 
     @Test
     public void map_article_with_one_gallery_block() {

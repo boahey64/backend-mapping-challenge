@@ -1,7 +1,6 @@
 package com.mhp.coding.challenges.mapping.models.db.blocks;
 
 import com.mhp.coding.challenges.mapping.mappers.BlockDtoMapperGeneric;
-import com.mhp.coding.challenges.mapping.mappers.ImageMapper;
 import com.mhp.coding.challenges.mapping.models.dto.blocks.TextBlockDto;
 import org.junit.Test;
 
@@ -36,7 +35,7 @@ public class TextBlockTest {
 
     private TextBlockDto callMapAndSetType(TextBlock textBlock) {
         return new BlockDtoMapperGeneric<>(TextBlockDto.class).getType(
-                textBlock.map(null));
+                textBlock.map());
     }
 
     private TextBlockDto aTextBlockDto(int sortIndex) {

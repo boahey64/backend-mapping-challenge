@@ -1,6 +1,5 @@
 package com.mhp.coding.challenges.mapping.models.db.blocks;
 
-import com.mhp.coding.challenges.mapping.mappers.ImageMapper;
 import com.mhp.coding.challenges.mapping.models.dto.blocks.ArticleBlockDto;
 import com.mhp.coding.challenges.mapping.models.dto.blocks.VideoBlockDto;
 
@@ -27,7 +26,7 @@ public class VideoBlock extends ArticleBlock {
     }
 
     @Override
-    public ArticleBlockDto map(ImageMapper imageMapper) {
+    public ArticleBlockDto map() {
         VideoBlockDto videoBlockDto = new VideoBlockDto(this.getSortIndex());
         videoBlockDto.setType(this.getType());
         videoBlockDto.setUrl(this.getUrl());

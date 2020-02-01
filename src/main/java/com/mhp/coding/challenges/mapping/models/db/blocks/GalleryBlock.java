@@ -1,6 +1,5 @@
 package com.mhp.coding.challenges.mapping.models.db.blocks;
 
-import com.mhp.coding.challenges.mapping.mappers.ImageMapper;
 import com.mhp.coding.challenges.mapping.models.db.Image;
 import com.mhp.coding.challenges.mapping.models.dto.ImageDto;
 import com.mhp.coding.challenges.mapping.models.dto.blocks.ArticleBlockDto;
@@ -24,7 +23,7 @@ public class GalleryBlock extends ArticleBlock {
     }
 
     @Override
-    public ArticleBlockDto map(ImageMapper imageMapper) {
+    public ArticleBlockDto map() {
         GalleryBlockDto galleryBlockDto = new GalleryBlockDto(this.getSortIndex());
 
         if(this.getImages() == null) {

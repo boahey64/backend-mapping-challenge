@@ -1,7 +1,6 @@
 package com.mhp.coding.challenges.mapping.models.db.blocks;
 
 import com.mhp.coding.challenges.mapping.mappers.BlockDtoMapperGeneric;
-import com.mhp.coding.challenges.mapping.mappers.ImageMapper;
 import com.mhp.coding.challenges.mapping.models.db.Image;
 import com.mhp.coding.challenges.mapping.models.db.ImageSize;
 import com.mhp.coding.challenges.mapping.models.dto.ImageDto;
@@ -17,8 +16,6 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNull;
 
 public class GalleryBlockTest {
-
-    ImageMapper imageMapper = new ImageMapper();
 
     @Test
     public void map_gallery_block_with_one_not_empty_image_in_image_list_to_gallery_block_dto() {
@@ -60,7 +57,7 @@ public class GalleryBlockTest {
 
     private GalleryBlockDto callMapAndSetType(GalleryBlock galleryBlock) {
         return new BlockDtoMapperGeneric<>(GalleryBlockDto.class).getType(
-                galleryBlock.map(imageMapper));
+                galleryBlock.map());
     }
 
     private GalleryBlockDto anExpectedGalleryBlockDto(int sortIndex) {

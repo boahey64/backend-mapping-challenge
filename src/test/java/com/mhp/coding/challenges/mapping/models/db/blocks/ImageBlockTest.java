@@ -34,7 +34,7 @@ public class ImageBlockTest {
 
     private ImageBlockDto callMapAndSetType(ImageBlock imageBlock) {
         return new BlockDtoMapperGeneric<>(ImageBlockDto.class).getType(
-                imageBlock.map(null));
+                imageBlock.map());
     }
 
     private ImageBlock anImageBlock() {

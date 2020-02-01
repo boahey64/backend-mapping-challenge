@@ -30,7 +30,7 @@ public class VideoBlockTest {
 
     private VideoBlockDto callMapAndSetType(VideoBlock galleryBlock) {
         return new BlockDtoMapperGeneric<>(VideoBlockDto.class).getType(
-                galleryBlock.map(null));
+                galleryBlock.map());
     }
 
     private VideoBlock aVideoBlock() {
