@@ -71,8 +71,8 @@ public class ArticleMapperTest {
         assert(areBlocksSorted(actual));
     }
 
-    private boolean areBlocksSorted(ArticleDto actual) {
-        return StreamEx.of(actual.getBlocks())
+    private boolean areBlocksSorted(ArticleDto articleDto) {
+        return StreamEx.of(articleDto.getBlocks())
                 .pairMap((a, b) -> a.compareTo(b) <= 0)
                 .allMatch(e -> e);
     }

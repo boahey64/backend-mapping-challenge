@@ -5,7 +5,7 @@ import com.mhp.coding.challenges.mapping.models.dto.blocks.ArticleBlockDto;
 
 import java.util.Collection;
 
-public class ArticleDto {
+public class ArticleDto implements Comparable<ArticleDto> {
 
     private Long id;
 
@@ -66,5 +66,10 @@ public class ArticleDto {
                 ", author='" + author + '\'' +
                 ", blocks=" + blocks +
                 '}';
+    }
+
+    @Override
+    public int compareTo(ArticleDto articleDto) {
+        return new Long((this.id - articleDto.id)).intValue();
     }
 }
