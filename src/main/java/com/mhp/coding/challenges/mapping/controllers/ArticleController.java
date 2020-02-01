@@ -19,7 +19,7 @@ public class ArticleController {
     }
 
     @GetMapping()
-    public List<ArticleDto> list() {
+    public List<ArticleDto> list(@RequestParam(defaultValue = "false") String notImplementedBlock) {
         return articleService.list();
     }
 

@@ -92,6 +92,11 @@ public class ArticleRepository {
 
         result.add(videoBlock);
 
+        // TODO add NoMappingBlock dynamically
+//        final NoMappingBlock noMappingBlock = new NoMappingBlock();
+//        noMappingBlock.setDummyValue("dummy");
+//        result.add(noMappingBlock);
+
         return result;
     }
 
