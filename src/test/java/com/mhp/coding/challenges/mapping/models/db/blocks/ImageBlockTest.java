@@ -22,16 +22,6 @@ public class ImageBlockTest {
 
     }
 
-    @Test
-    public void map_image_block_without_existing_image_to_image_block_dto() {
-        ImageBlock objectUnderTest = anImageWithEmptyImageField();
-        ImageBlockDto expected = anImageBlockDto(2);
-
-        ImageBlockDto actual = callMapAndSetType(objectUnderTest);
-
-        assertEquals(expected.getSortIndex(), actual.getSortIndex());
-    }
-
     private ImageBlockDto callMapAndSetType(ImageBlock imageBlock) {
         return new BlockDtoMapperGeneric<>(ImageBlockDto.class).getType(
                 imageBlock.map());
@@ -43,12 +33,6 @@ public class ImageBlockTest {
         Image image = new Image();
         image.setId(3L);
         imageBlock.setImage(image);
-        return imageBlock;
-    }
-
-    private ImageBlock anImageWithEmptyImageField() {
-        ImageBlock imageBlock = new ImageBlock();
-        imageBlock.setSortIndex(2);
         return imageBlock;
     }
 

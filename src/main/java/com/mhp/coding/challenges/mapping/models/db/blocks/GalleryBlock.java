@@ -46,13 +46,4 @@ public class GalleryBlock extends ArticleBlock {
                 "images=" + images +
                 '}';
     }
-
-    private ImageDto mapImageToImageDto(Image image) {
-        ImageDto imageDto = new ImageDto();
-        imageDto.setId(image.getId());
-        imageDto.setImageSize(image.getImageSize());
-        imageDto.setUrl(image.getUrl());
-
-        return imageDto;
-    }
 }
