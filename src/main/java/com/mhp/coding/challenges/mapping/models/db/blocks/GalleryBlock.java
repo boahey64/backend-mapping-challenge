@@ -33,7 +33,7 @@ public class GalleryBlock extends ArticleBlock {
 
         List<ImageDto> imageDtos = this.getImages().stream()
                 .filter(Objects::nonNull)
-                .map(image -> imageMapper.map(image))
+                .map(image -> image.map())
                 .collect(toList());
 
         galleryBlockDto.setImages(imageDtos);
@@ -46,5 +46,14 @@ public class GalleryBlock extends ArticleBlock {
         return "GalleryBlock{" +
                 "images=" + images +
                 '}';
+    }
+
+    private ImageDto mapImageToImageDto(Image image) {
+        ImageDto imageDto = new ImageDto();
+        imageDto.setId(image.getId());
+        imageDto.setImageSize(image.getImageSize());
+        imageDto.setUrl(image.getUrl());
+
+        return imageDto;
     }
 }

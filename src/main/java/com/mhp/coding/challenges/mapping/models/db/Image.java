@@ -1,5 +1,7 @@
 package com.mhp.coding.challenges.mapping.models.db;
 
+import com.mhp.coding.challenges.mapping.models.dto.ImageDto;
+
 public class Image extends DBEntity {
 
     private String url;
@@ -20,6 +22,15 @@ public class Image extends DBEntity {
 
     public void setImageSize(ImageSize imageSize) {
         this.imageSize = imageSize;
+    }
+
+    public ImageDto map() {
+        ImageDto imageDto = new ImageDto();
+        imageDto.setId(this.getId());
+        imageDto.setImageSize(this.getImageSize());
+        imageDto.setUrl(this.getUrl());
+
+        return imageDto;
     }
 
     @Override
