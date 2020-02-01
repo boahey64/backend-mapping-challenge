@@ -32,6 +32,7 @@ public class ArticleService {
         return articles.stream()
                 .filter(Objects::nonNull)
                 .map(mapper::map)
+                .sorted()
                 .collect(toList());
     }
 
