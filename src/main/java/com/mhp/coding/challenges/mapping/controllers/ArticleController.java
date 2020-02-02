@@ -11,7 +11,7 @@ import java.util.List;
 @RequestMapping("/article")
 public class ArticleController {
 
-    private final ArticleService articleService;
+    private ArticleService articleService;
 
     @Autowired
     public ArticleController(ArticleService articleService) {
