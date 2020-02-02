@@ -2,10 +2,10 @@ package com.mhp.coding.challenges.mapping.repositories;
 
 import com.mhp.coding.challenges.mapping.exceptions.ArticleNotAvailableException;
 import com.mhp.coding.challenges.mapping.models.db.Article;
-import org.junit.Ignore;
 import org.junit.Test;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 public class ArticleRepositoryTest {
     private ArticleRepository serviceUnderTest = new ArticleRepository();
