@@ -5,6 +5,7 @@ import com.mhp.coding.challenges.mapping.models.db.Article;
 import com.mhp.coding.challenges.mapping.models.db.Image;
 import com.mhp.coding.challenges.mapping.models.db.ImageSize;
 import com.mhp.coding.challenges.mapping.models.db.blocks.*;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
 import java.util.*;
@@ -14,7 +15,12 @@ import java.util.stream.Collectors;
 public class ArticleRepository {
     private Map<Long, Article> articleMap = new HashMap<>();
 
-    public ArticleRepository() {
+    private Boolean addNotImplementedMapMethodBlock;
+
+    public ArticleRepository(
+            @Value("#{new Boolean('${add.not.implemented.map.method}')}") Boolean addNotImplementedMapMethodBlock) {
+        this.addNotImplementedMapMethodBlock = addNotImplementedMapMethodBlock;
+
         articleMap.put(1001L, createDummyArticle(1001L));
         articleMap.put(2002L, createDummyArticle(2002L));
         articleMap.put(3003L, createDummyArticle(3003L));
@@ -92,10 +98,11 @@ public class ArticleRepository {
 
         result.add(videoBlock);
 
-        // TODO add NoMappingBlock dynamically
-//        final NoMappingBlock noMappingBlock = new NoMappingBlock();
-//        noMappingBlock.setDummyValue("dummy");
-//        result.add(noMappingBlock);
+        if(addNotImplementedMapMethodBlock) {
+            final NoMappingBlock noMappingBlock = new NoMappingBlock();
+            noMappingBlock.setDummyValue("dummy");
+            result.add(noMappingBlock);
+        }
 
         return result;
     }
