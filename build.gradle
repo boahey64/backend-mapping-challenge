@@ -33,6 +33,11 @@ dependencies {
 	testCompile('io.github.amaembo:streamex:0.4.1')
 }
 
+bootRun {
+	// support passing -Dsystem.property=value to bootRun task
+	systemProperties = System.properties
+}
+
 tasks.withType(Test) {
 	testLogging {
 		// set options for log level LIFECYCLE
