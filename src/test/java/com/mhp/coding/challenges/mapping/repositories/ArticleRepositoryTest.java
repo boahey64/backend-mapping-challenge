@@ -8,22 +8,23 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
 public class ArticleRepositoryTest {
-    private ArticleRepository serviceUnderTest = new ArticleRepository();
 
     @Test
     public void find_by_id_for_existing_id() {
+        ArticleRepository serviceUnderTest = new ArticleRepository(false);
+
         Article article = serviceUnderTest.findBy(1001L);
 
         assertEquals("Max Mustermann", article.getAuthor());
         assertEquals("Article Description 1001", article.getDescription());
         assertEquals("Article Nr.: 1001", article.getTitle());
         assertEquals("Hans Müller", article.getLastModifiedBy());
-
     }
 
 
     @Test
     public void find_by_id_for_not_existing_id() {
+        ArticleRepository serviceUnderTest = new ArticleRepository(false);
         Throwable e = null;
 
         try {
@@ -33,7 +34,6 @@ public class ArticleRepositoryTest {
         }
 
         assertTrue(e instanceof ArticleNotAvailableException);
-
     }
 
 }
